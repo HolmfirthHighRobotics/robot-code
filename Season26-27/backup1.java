@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "MecanumBase", group = "Base")
-public class MecanumBase extends LinearOpMode {
+@TeleOp(name = "MogguTheBot", group = "Base")
+public class MogguTheBot extends LinearOpMode {
 
     private DcMotor leftFront, rightFront, leftRear, rightRear;
 
