@@ -18,8 +18,12 @@ public class MecanumBase extends LinearOpMode {
         rightRear  = hardwareMap.get(DcMotor.class, "rightRear");
 
         // Reverse left side (most drivetrains need this)
+        // (21126) Needs to be connected to new CH to check this
+        // Commented out now
+        /* 
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         leftRear.setDirection(DcMotor.Direction.REVERSE);
+        */
 
         // Brake for tighter control
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -32,18 +36,25 @@ public class MecanumBase extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
+            int speed = 1;
 
             double y = -gamepad1.left_stick_y;  // forward/back
             double x =  gamepad1.left_stick_x;  // strafe
             double r =  gamepad1.right_stick_x; // rotate
 
-            double lf = y + x + r;
-            double rf = y - x - r;
-            double lr = y - x + r;
-            double rr = y + x - r;
+            double lf = (y + x + r) * speed;
+            double rf = (y - x - r) * speed;
+            double lr = (y - x + r) * speed;
+            double rr = (y + x - r) * speed;
 
             double max = Math.max(Math.max(Math.abs(lf), Math.abs(rf)),
                                   Math.max(Math.abs(lr), Math.abs(rr)));
+
+            if (gamepad1.left_stick_button) {
+                speed = .5; // Change this value when needed
+            } else {
+                speed = 1;
+            }
 
             if (max > 1.0) {
                 lf /= max;
