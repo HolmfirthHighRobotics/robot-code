@@ -6,7 +6,7 @@ If you are a member of HHR, the computer at the club will have git already insta
  1. Make edits to the repository (via Visual Studio Code)
  2. open git
  3. navigate to repository (should be on desktop - cd Desktop/robot-code)
+  3.1. If someone has made changes to the repository, you can sync it via "git pull origin main"
  4. "git add ."
  5. "git commit -m "Your Message Here"
  6. "git push" (if that asks for credentials, type in the username & password, written on computer)
- (optional) 7. If someone has made changes to the repository, you can sync it via "git pull origin main"
