@@ -24,6 +24,10 @@ public class JeremySenior extends LinearOpMode {
             float y = -gamepad1.LeftStickY
             float x = gamepad1.LeftStickX
             float rx = gamepad1.RightStickY
+            frontLeft.power((y+x)+rx)
+            backLeft.power((y-x)+rx)
+            frontRight.power((y-x)-rx)
+            backRight.power((y+x)-rx)
         }
     }
 }
