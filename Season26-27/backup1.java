@@ -43,6 +43,15 @@ public class JeremySenior extends LinearOpMode {
                     IntakeMotor.speed(0);
                 }
             }
+
+            // One-Time Outtake Press
+            // Click once to make it launch
+            // Have to launch again by pressing button again
+            if (gamepad2.x) { // Our Square button
+                telemetry.addLine("Outtake Button Pressed!");
+            }
+
+            telemetry.update();
         }
     }
 }
