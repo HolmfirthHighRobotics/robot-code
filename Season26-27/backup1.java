@@ -11,6 +11,7 @@ public class JeremySenior extends LinearOpMode {
     private DcMotor FrontRight;
     private DcMotor BackLeft;
     private DcMotor Backright;
+    double Multiplier = 1.0;
 
     // Intake Motor
     private DcMotor IntakeMotor;
@@ -28,10 +29,10 @@ public class JeremySenior extends LinearOpMode {
             double x = gamepad1.LeftStickX;
             double rx = gamepad1.RightStickY;
             
-            frontLeft.power((y+x)+rx);
-            backLeft.power((y-x)+rx);
-            frontRight.power((y-x)-rx);
-            backRight.power((y+x)-rx);
+            frontLeft.power(((y+x)+rx)*Multiplier);
+            backLeft.power(((y-x)+rx)*Multiplier);
+            frontRight.power(((y-x)-rx)*Multiplier);
+            backRight.power(((y+x)-rx)*Multiplier);
 
             // Toggle Intake (gamepad2)
             bool isIntakeOn = true;
@@ -57,6 +58,21 @@ public class JeremySenior extends LinearOpMode {
                 telemetry.addLine("Outtake Button Pressed!");
             } else {
                 OuttakeMotor.power(0);
+            }
+
+            // Acts as a handbrake for sudden stopping.
+            if (gamepad1.right_trigger) {
+                Multiplier = 0;
+            } else {
+                Multiplier = 1.0;
+            }
+
+            // Overall Stopping Control (secret command shhhh!)
+            // May need work
+            if (gamepad1.start || gamepad2.start) {
+                Multiplier = 0;
+                IntakeSpeed = 0;
+                OuttakeSpeed = 0;
             }
 
             telemetry.update();
