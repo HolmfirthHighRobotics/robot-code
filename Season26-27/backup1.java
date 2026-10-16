@@ -9,7 +9,7 @@ public class JeremySenior {
     private DcMotor FrontLeft;
     private DcMotor FrontRight;
     private DcMotor BackLeft;
-    private DcMotor Backright;
+    private DcMotor BackRight;
     double Multiplier = 1.0;
 
     // Intake Motor
@@ -30,10 +30,10 @@ public class JeremySenior {
             double x = gamepad1.LeftStickX;
             double rx = gamepad1.RightStickY;
            
-            frontLeft.power(((y+x)+rx)*Multiplier);
-            backLeft.power(((y-x)+rx)*Multiplier);
-            frontRight.power(((y-x)-rx)*Multiplier);
-            backRight.power(((y+x)-rx)*Multiplier);
+            FrontLeft.power(((y+x)+rx)*Multiplier);
+            BackLeft.power(((y-x)+rx)*Multiplier);
+            FrontRight.power(((y-x)-rx)*Multiplier);
+            BackRight.power(((y+x)-rx)*Multiplier);
 
             // Toggle Intake (gamepad2)
             bool isIntakeOn = true;
